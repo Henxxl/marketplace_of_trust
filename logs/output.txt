@@ -1,0 +1,31 @@
+    Finished `release` profile [optimized] target(s) in 0.34s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s
+     Running unittests src/lib.rs (/69fe5a30be9241901c1cf3ad/target/debug/deps/workspace-51ba4ba41e55366b)
+
+Found a 'test' script in the Anchor.toml. Running it as a test suite!
+
+Running test suite: "/69fe5a30be9241901c1cf3ad/Anchor.toml"
+
+yarn run v1.22.22
+$ /69fe5a30be9241901c1cf3ad/node_modules/.bin/ts-mocha -p ./tsconfig.json -t 1000000 'tests/**/*.ts'
+
+
+  workspace
+    ✔ Initialize Config (411ms)
+    ✔ Register Agent (401ms)
+    ✔ Update Trust Score - good performance (402ms)
+    ✔ Stake Vouch for Agent (409ms)
+    ✔ Update Trust Score - with vouch bonus (399ms)
+    ✔ Delegate Funds to Agent (411ms)
+    ✔ Withdraw Delegation (397ms)
+    ✔ Unstake Vouch (410ms)
+    ✔ Toggle Pause (403ms)
+    ✔ Reject operations when paused (416ms)
+    ✔ Unpause and resume operations (389ms)
+    ✔ Flagged agent blocks delegation (824ms)
+    ✔ Unauthorized authority rejected (394ms)
+
+
+  13 passing (8s)
+
+Done in 8.93s.
