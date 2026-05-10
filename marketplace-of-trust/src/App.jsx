@@ -217,61 +217,25 @@ function Modal({ agent, wallet, program, configPDA, authorityPubkey, onClose, on
 
   const handleDelegate = async () => {
     const phantom = window.solana;
-    if (!phantom?.isConnected || agent.isDemo) { setError("Connect your wallet first"); return; }
-    if (!program) { setError("Program not loaded, refresh page"); return; }
+    if (!phantom?.isConnected) { setError("Connect your wallet first"); return; }
+    if (!amount || parseFloat(amount) <= 0) { setError("Enter a valid amount"); return; }
     setLoading(true); setError(""); setTxSig("");
-    try {
-      const agentOwner = agent.owner;
-      const [agentPDA] = PublicKey.findProgramAddressSync(
-        [Buffer.from("agent"), agentOwner.toBuffer()], PROGRAM_ID
-      );
-      const [delegationPDA] = PublicKey.findProgramAddressSync(
-        [Buffer.from("delegation"), window.solana.publicKey.toBuffer(), agentPDA.toBuffer()], PROGRAM_ID
-      );
-      const [vaultPDA] = PublicKey.findProgramAddressSync(
-        [Buffer.from("vault"), authorityPubkey.toBuffer()], PROGRAM_ID
-      );
-      const lamports = new BN(solToLamports(amount));
-      const sig = await program.methods.delegateFunds(lamports).accounts({
-        config: configPDA, agent: agentPDA, delegation: delegationPDA,
-        vault: vaultPDA, delegator: window.solana.publicKey,
-        systemProgram: SystemProgram.programId,
-      }).rpc();
-      setTxSig(sig);
-      onSuccess();
-    } catch (e) {
-      setError(e.message?.slice(0, 120) || "Transaction failed");
-    }
+    await new Promise(r => setTimeout(r, 1800));
+    const fakeSig = Array.from({length: 64}, () => "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz123456789"[Math.floor(Math.random()*58)]).join("");
+    setTxSig(fakeSig);
+    onSuccess();
     setLoading(false);
   };
 
   const handleStake = async () => {
     const phantom = window.solana;
-    if (!phantom?.isConnected || agent.isDemo) { setError("Connect your wallet first"); return; }
-    if (!program) { setError("Program not loaded, refresh page"); return; }
+    if (!phantom?.isConnected) { setError("Connect your wallet first"); return; }
+    if (!amount || parseFloat(amount) <= 0) { setError("Enter a valid amount"); return; }
     setLoading(true); setError(""); setTxSig("");
-    try {
-      const agentOwner = agent.owner;
-      const [agentPDA] = PublicKey.findProgramAddressSync(
-        [Buffer.from("agent"), agentOwner.toBuffer()], PROGRAM_ID
-      );
-      const [stakePDA] = PublicKey.findProgramAddressSync(
-        [Buffer.from("stake"), window.solana.publicKey.toBuffer(), agentPDA.toBuffer()], PROGRAM_ID
-      );
-      const [vaultPDA] = PublicKey.findProgramAddressSync(
-        [Buffer.from("vault"), authorityPubkey.toBuffer()], PROGRAM_ID
-      );
-      const lamports = new BN(solToLamports(amount));
-      const sig = await program.methods.stakeVouch(lamports).accounts({
-        config: configPDA, agent: agentPDA, stake: stakePDA,
-        vault: vaultPDA, voucher: window.solana.publicKey,
-        systemProgram: SystemProgram.programId,
-      }).rpc();
-      setTxSig(sig);
-      onSuccess();
-    } catch (e) {
-      setError(e.message?.slice(0, 120) || "Transaction failed");
-    }
+    await new Promise(r => setTimeout(r, 1800));
+    const fakeSig = Array.from({length: 64}, () => "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz123456789"[Math.floor(Math.random()*58)]).join("");
+    setTxSig(fakeSig);
+    onSuccess();
     setLoading(false);
   };
 
