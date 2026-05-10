@@ -13,10 +13,10 @@ const IDL = {
   instructions: [
     {
       name: "register_agent",
-      discriminator: [135, 157, 66, 195, 2, 113, 175, 30],
+      discriminator: [135,157,66,195,2,113,175,30],
       accounts: [
-        { name: "config", writable: true, pda: { seeds: [{ kind: "const", value: [99, 111, 110, 102, 105, 103] }, { kind: "account", path: "config.authority", account: "Config" }] } },
-        { name: "agent", writable: true, pda: { seeds: [{ kind: "const", value: [97, 103, 101, 110, 116] }, { kind: "account", path: "owner" }] } },
+        { name: "config", writable: true, pda: { seeds: [{ kind: "const", value: [99,111,110,102,105,103] }, { kind: "account", path: "config.authority", account: "Config" }] } },
+        { name: "agent", writable: true, pda: { seeds: [{ kind: "const", value: [97,103,101,110,116] }, { kind: "account", path: "owner" }] } },
         { name: "owner", writable: true, signer: true },
         { name: "system_program", address: "11111111111111111111111111111111" }
       ],
@@ -24,12 +24,12 @@ const IDL = {
     },
     {
       name: "stake_vouch",
-      discriminator: [197, 19, 16, 117, 107, 175, 89, 105],
+      discriminator: [197,19,16,117,107,175,89,105],
       accounts: [
-        { name: "config", writable: true, pda: { seeds: [{ kind: "const", value: [99, 111, 110, 102, 105, 103] }, { kind: "account", path: "config.authority", account: "Config" }] } },
-        { name: "agent", writable: true, pda: { seeds: [{ kind: "const", value: [97, 103, 101, 110, 116] }, { kind: "account", path: "agent.owner", account: "Agent" }] } },
-        { name: "stake", writable: true, pda: { seeds: [{ kind: "const", value: [115, 116, 97, 107, 101] }, { kind: "account", path: "voucher" }, { kind: "account", path: "agent" }] } },
-        { name: "vault", writable: true, pda: { seeds: [{ kind: "const", value: [118, 97, 117, 108, 116] }, { kind: "account", path: "config.authority", account: "Config" }] } },
+        { name: "config", writable: true, pda: { seeds: [{ kind: "const", value: [99,111,110,102,105,103] }, { kind: "account", path: "config.authority", account: "Config" }] } },
+        { name: "agent", writable: true, pda: { seeds: [{ kind: "const", value: [97,103,101,110,116] }, { kind: "account", path: "agent.owner", account: "Agent" }] } },
+        { name: "stake", writable: true, pda: { seeds: [{ kind: "const", value: [115,116,97,107,101] }, { kind: "account", path: "voucher" }, { kind: "account", path: "agent" }] } },
+        { name: "vault", writable: true, pda: { seeds: [{ kind: "const", value: [118,97,117,108,116] }, { kind: "account", path: "config.authority", account: "Config" }] } },
         { name: "voucher", writable: true, signer: true },
         { name: "system_program", address: "11111111111111111111111111111111" }
       ],
@@ -37,12 +37,12 @@ const IDL = {
     },
     {
       name: "delegate_funds",
-      discriminator: [201, 45, 22, 155, 140, 30, 54, 143],
+      discriminator: [201,45,22,155,140,30,54,143],
       accounts: [
-        { name: "config", pda: { seeds: [{ kind: "const", value: [99, 111, 110, 102, 105, 103] }, { kind: "account", path: "config.authority", account: "Config" }] } },
-        { name: "agent", writable: true, pda: { seeds: [{ kind: "const", value: [97, 103, 101, 110, 116] }, { kind: "account", path: "agent.owner", account: "Agent" }] } },
-        { name: "delegation", writable: true, pda: { seeds: [{ kind: "const", value: [100, 101, 108, 101, 103, 97, 116, 105, 111, 110] }, { kind: "account", path: "delegator" }, { kind: "account", path: "agent" }] } },
-        { name: "vault", writable: true, pda: { seeds: [{ kind: "const", value: [118, 97, 117, 108, 116] }, { kind: "account", path: "config.authority", account: "Config" }] } },
+        { name: "config", pda: { seeds: [{ kind: "const", value: [99,111,110,102,105,103] }, { kind: "account", path: "config.authority", account: "Config" }] } },
+        { name: "agent", writable: true, pda: { seeds: [{ kind: "const", value: [97,103,101,110,116] }, { kind: "account", path: "agent.owner", account: "Agent" }] } },
+        { name: "delegation", writable: true, pda: { seeds: [{ kind: "const", value: [100,101,108,101,103,97,116,105,111,110] }, { kind: "account", path: "delegator" }, { kind: "account", path: "agent" }] } },
+        { name: "vault", writable: true, pda: { seeds: [{ kind: "const", value: [118,97,117,108,116] }, { kind: "account", path: "config.authority", account: "Config" }] } },
         { name: "delegator", writable: true, signer: true },
         { name: "system_program", address: "11111111111111111111111111111111" }
       ],
@@ -50,37 +50,29 @@ const IDL = {
     },
   ],
   accounts: [
-    { name: "Agent", discriminator: [47, 166, 112, 147, 155, 197, 86, 7] },
-    { name: "Config", discriminator: [155, 12, 170, 224, 30, 250, 204, 130] },
+    { name: "Agent", discriminator: [47,166,112,147,155,197,86,7] },
+    { name: "Config", discriminator: [155,12,170,224,30,250,204,130] },
   ],
   types: [
-    {
-      name: "Agent", type: {
-        kind: "struct", fields: [
-          { name: "bump", type: "u8" }, { name: "owner", type: "pubkey" },
-          { name: "agent_name", type: "string" }, { name: "agent_uri", type: "string" },
-          { name: "trust_score", type: "u16" }, { name: "total_trades", type: "u64" },
-          { name: "winning_trades", type: "u64" }, { name: "total_pnl", type: "i64" },
-          { name: "max_drawdown", type: "u16" }, { name: "recommendation_accuracy", type: "u16" },
-          { name: "total_vouched", type: "u64" }, { name: "voucher_count", type: "u64" },
-          { name: "total_delegated", type: "u64" }, { name: "is_flagged", type: "bool" },
-          { name: "is_active", type: "bool" }, { name: "registered_at", type: "i64" },
-          { name: "last_updated", type: "i64" },
-        ]
-      }
-    },
-    {
-      name: "Config", type: {
-        kind: "struct", fields: [
-          { name: "bump", type: "u8" }, { name: "vault_bump", type: "u8" },
-          { name: "authority", type: "pubkey" }, { name: "is_active", type: "bool" },
-          { name: "is_paused", type: "bool" }, { name: "version", type: "u8" },
-          { name: "fee_bps", type: "u16" }, { name: "min_stake_amount", type: "u64" },
-          { name: "max_trust_score", type: "u16" }, { name: "base_delegation_limit", type: "u64" },
-          { name: "total_agents", type: "u64" }, { name: "total_staked", type: "u64" },
-        ]
-      }
-    },
+    { name: "Agent", type: { kind: "struct", fields: [
+      { name: "bump", type: "u8" }, { name: "owner", type: "pubkey" },
+      { name: "agent_name", type: "string" }, { name: "agent_uri", type: "string" },
+      { name: "trust_score", type: "u16" }, { name: "total_trades", type: "u64" },
+      { name: "winning_trades", type: "u64" }, { name: "total_pnl", type: "i64" },
+      { name: "max_drawdown", type: "u16" }, { name: "recommendation_accuracy", type: "u16" },
+      { name: "total_vouched", type: "u64" }, { name: "voucher_count", type: "u64" },
+      { name: "total_delegated", type: "u64" }, { name: "is_flagged", type: "bool" },
+      { name: "is_active", type: "bool" }, { name: "registered_at", type: "i64" },
+      { name: "last_updated", type: "i64" },
+    ]}},
+    { name: "Config", type: { kind: "struct", fields: [
+      { name: "bump", type: "u8" }, { name: "vault_bump", type: "u8" },
+      { name: "authority", type: "pubkey" }, { name: "is_active", type: "bool" },
+      { name: "is_paused", type: "bool" }, { name: "version", type: "u8" },
+      { name: "fee_bps", type: "u16" }, { name: "min_stake_amount", type: "u64" },
+      { name: "max_trust_score", type: "u16" }, { name: "base_delegation_limit", type: "u64" },
+      { name: "total_agents", type: "u64" }, { name: "total_staked", type: "u64" },
+    ]}},
   ],
   errors: [
     { code: 6000, name: "MathOverflow" }, { code: 6001, name: "DivisionByZero" },
@@ -115,10 +107,10 @@ const shortKey = (pk) => `${pk.toString().slice(0, 4)}...${pk.toString().slice(-
 
 // Demo agents for display when no wallet connected
 const DEMO_AGENTS = [
-  { agent_name: "AlphaVault", owner: "7xKX...mN9p", trust_score: 940, total_trades: 1842, winning_trades: 1445, total_pnl: 342000, max_drawdown: 41, total_vouched: 12400000000, voucher_count: 284, total_delegated: 482000000000, is_flagged: false, is_active: true, registered_at: Date.now() / 1000 - 7776000, isDemo: true },
-  { agent_name: "NeuralEdge", owner: "9mKL...xP2q", trust_score: 880, total_trades: 3210, winning_trades: 2285, total_pnl: 227000, max_drawdown: 78, total_vouched: 5800000000, voucher_count: 156, total_delegated: 218000000000, is_flagged: false, is_active: true, registered_at: Date.now() / 1000 - 3888000, isDemo: true },
-  { agent_name: "QuietStorm", owner: "3nRT...vB8k", trust_score: 810, total_trades: 920, winning_trades: 605, total_pnl: 181000, max_drawdown: 92, total_vouched: 2100000000, voucher_count: 87, total_delegated: 94000000000, is_flagged: false, is_active: true, registered_at: Date.now() / 1000 - 2592000, isDemo: true },
-  { agent_name: "ShadowBot", owner: "1xZZ...kR4m", trust_score: 310, total_trades: 780, winning_trades: 304, total_pnl: -186000, max_drawdown: 412, total_vouched: 40000000, voucher_count: 4, total_delegated: 8000000000, is_flagged: true, is_active: true, registered_at: Date.now() / 1000 - 864000, isDemo: true },
+  { agent_name: "AlphaVault", owner: "7xKX...mN9p", trust_score: 940, total_trades: 1842, winning_trades: 1445, total_pnl: 342000, max_drawdown: 41, total_vouched: 12400000000, voucher_count: 284, total_delegated: 482000000000, is_flagged: false, is_active: true, registered_at: Date.now()/1000 - 7776000, isDemo: true },
+  { agent_name: "NeuralEdge", owner: "9mKL...xP2q", trust_score: 880, total_trades: 3210, winning_trades: 2285, total_pnl: 227000, max_drawdown: 78, total_vouched: 5800000000, voucher_count: 156, total_delegated: 218000000000, is_flagged: false, is_active: true, registered_at: Date.now()/1000 - 3888000, isDemo: true },
+  { agent_name: "QuietStorm", owner: "3nRT...vB8k", trust_score: 810, total_trades: 920, winning_trades: 605, total_pnl: 181000, max_drawdown: 92, total_vouched: 2100000000, voucher_count: 87, total_delegated: 94000000000, is_flagged: false, is_active: true, registered_at: Date.now()/1000 - 2592000, isDemo: true },
+  { agent_name: "ShadowBot", owner: "1xZZ...kR4m", trust_score: 310, total_trades: 780, winning_trades: 304, total_pnl: -186000, max_drawdown: 412, total_vouched: 40000000, voucher_count: 4, total_delegated: 8000000000, is_flagged: true, is_active: true, registered_at: Date.now()/1000 - 864000, isDemo: true },
 ];
 
 // ── COMPONENTS ─────────────────────────────────────────────
@@ -129,13 +121,13 @@ function ScoreRing({ score100, size = 60 }) {
   const color = SCORE_COLOR(score100);
   return (
     <svg width={size} height={size} style={{ transform: "rotate(-90deg)", flexShrink: 0 }}>
-      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#1a1a2e" strokeWidth={4.5} />
-      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={color} strokeWidth={4.5}
+      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#1a1a2e" strokeWidth={4.5} />
+      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={4.5}
         strokeDasharray={`${filled} ${circ}`} strokeLinecap="round"
         style={{ transition: "stroke-dasharray 0.8s ease" }} />
-      <text x={size / 2} y={size / 2 + 1} textAnchor="middle" dominantBaseline="middle"
+      <text x={size/2} y={size/2+1} textAnchor="middle" dominantBaseline="middle"
         fill={color} fontSize={size === 60 ? 14 : 20} fontWeight={700}
-        style={{ transform: `rotate(90deg)`, transformOrigin: `${size / 2}px ${size / 2}px`, fontFamily: "monospace" }}>
+        style={{ transform: `rotate(90deg)`, transformOrigin: `${size/2}px ${size/2}px`, fontFamily: "monospace" }}>
         {score100}
       </text>
     </svg>
@@ -224,7 +216,9 @@ function Modal({ agent, wallet, program, configPDA, authorityPubkey, onClose, on
   const color = SCORE_COLOR(score100);
 
   const handleDelegate = async () => {
-    if (!wallet || !program || agent.isDemo) { setError("Connect your wallet first"); return; }
+    const phantom = window.solana;
+    if (!phantom?.isConnected || agent.isDemo) { setError("Connect your wallet first"); return; }
+    if (!program) { setError("Program not loaded, refresh page"); return; }
     setLoading(true); setError(""); setTxSig("");
     try {
       const agentOwner = agent.owner;
@@ -232,7 +226,7 @@ function Modal({ agent, wallet, program, configPDA, authorityPubkey, onClose, on
         [Buffer.from("agent"), agentOwner.toBuffer()], PROGRAM_ID
       );
       const [delegationPDA] = PublicKey.findProgramAddressSync(
-        [Buffer.from("delegation"), wallet.publicKey.toBuffer(), agentPDA.toBuffer()], PROGRAM_ID
+        [Buffer.from("delegation"), window.solana.publicKey.toBuffer(), agentPDA.toBuffer()], PROGRAM_ID
       );
       const [vaultPDA] = PublicKey.findProgramAddressSync(
         [Buffer.from("vault"), authorityPubkey.toBuffer()], PROGRAM_ID
@@ -240,7 +234,7 @@ function Modal({ agent, wallet, program, configPDA, authorityPubkey, onClose, on
       const lamports = new BN(solToLamports(amount));
       const sig = await program.methods.delegateFunds(lamports).accounts({
         config: configPDA, agent: agentPDA, delegation: delegationPDA,
-        vault: vaultPDA, delegator: wallet.publicKey,
+        vault: vaultPDA, delegator: window.solana.publicKey,
         systemProgram: SystemProgram.programId,
       }).rpc();
       setTxSig(sig);
@@ -252,7 +246,9 @@ function Modal({ agent, wallet, program, configPDA, authorityPubkey, onClose, on
   };
 
   const handleStake = async () => {
-    if (!wallet || !program || agent.isDemo) { setError("Connect your wallet first"); return; }
+    const phantom = window.solana;
+    if (!phantom?.isConnected || agent.isDemo) { setError("Connect your wallet first"); return; }
+    if (!program) { setError("Program not loaded, refresh page"); return; }
     setLoading(true); setError(""); setTxSig("");
     try {
       const agentOwner = agent.owner;
@@ -260,7 +256,7 @@ function Modal({ agent, wallet, program, configPDA, authorityPubkey, onClose, on
         [Buffer.from("agent"), agentOwner.toBuffer()], PROGRAM_ID
       );
       const [stakePDA] = PublicKey.findProgramAddressSync(
-        [Buffer.from("stake"), wallet.publicKey.toBuffer(), agentPDA.toBuffer()], PROGRAM_ID
+        [Buffer.from("stake"), window.solana.publicKey.toBuffer(), agentPDA.toBuffer()], PROGRAM_ID
       );
       const [vaultPDA] = PublicKey.findProgramAddressSync(
         [Buffer.from("vault"), authorityPubkey.toBuffer()], PROGRAM_ID
@@ -268,7 +264,7 @@ function Modal({ agent, wallet, program, configPDA, authorityPubkey, onClose, on
       const lamports = new BN(solToLamports(amount));
       const sig = await program.methods.stakeVouch(lamports).accounts({
         config: configPDA, agent: agentPDA, stake: stakePDA,
-        vault: vaultPDA, voucher: wallet.publicKey,
+        vault: vaultPDA, voucher: window.solana.publicKey,
         systemProgram: SystemProgram.programId,
       }).rpc();
       setTxSig(sig);
@@ -344,7 +340,7 @@ function Modal({ agent, wallet, program, configPDA, authorityPubkey, onClose, on
             {error && <div style={{ color: "#ef4444", fontSize: 12, marginBottom: 12, background: "#ef444411", padding: "8px 12px", borderRadius: 8 }}>{error}</div>}
             {txSig && (
               <div style={{ color: "#14F195", fontSize: 11, marginBottom: 12, background: "#14F19511", padding: "8px 12px", borderRadius: 8, fontFamily: "monospace", wordBreak: "break-all" }}>
-                ✓ Success! <a href={`https://explorer.solana.com/tx/${txSig}?cluster=devnet`} target="_blank" rel="noreferrer" style={{ color: "#14F195" }}>View on Explorer ↗</a>
+                ✓ Success! Delegated! <a href={`https://explorer.solana.com/tx/${txSig}?cluster=devnet`} target="_blank" rel="noreferrer" style={{ color: "#14F195" }}>View on Explorer ↗</a>
               </div>
             )}
             <button onClick={handleDelegate} disabled={!amount || loading}
